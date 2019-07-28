@@ -26,6 +26,7 @@ function startWebServer() {
     app.use(userRoutes);
     app.use(sessionRoutes);
 
+    app.use(express.static(path.join(__dirname, 'client/build')))
     require('./routes/')(app);
 
     app.get('/', (req, res) => {
