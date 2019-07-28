@@ -8,10 +8,17 @@ function create(request, response) {
         if( foundUser && bcrypt.compareSync(password, foundUser.password) ) {
             let id = foundUser._id;
             let token = jwt.sign({userId: id}, 'secretkey');
-            response.json({token:token});
+            response.json({
+                token:token,
+                message: 'Login successful!'
+            });
+            console.log(token)
         }
         else {
-            response.send('username or password is incorrect') 
+            response.json({
+                body: request.body,
+                message: 'Username or password is incorrect!'
+            })
         };
 
     })
