@@ -10,14 +10,14 @@ function create(request, response) {
             let token = jwt.sign({userId: id}, 'secretkey');
             response.json({
                 token:token,
-                message: 'Login successful!'
+                message: 'success',
+                user: foundUser.username
             });
-            console.log(token)
         }
         else {
             response.json({
                 body: request.body,
-                message: 'Username or password is incorrect!'
+                message: 'failure'
             })
         };
 

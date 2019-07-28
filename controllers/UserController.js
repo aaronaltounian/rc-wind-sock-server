@@ -14,14 +14,14 @@ function create(request, response, next) {
         User.findOne({username:username}, (err, foundUser) => {
             if(foundUser) {
                 response.json({
-                    message: 'Username already exists!'
+                    message: 'exists'
                 });
             }
             else {
                 let hash = bcrypt.hashSync(password, salt);
                 let user = new User( {username: username, password: hash} );
                 user.save(() => response.json({
-                    message: 'User saved!'
+                    message: 'created'
                 }))  
             }
         })
