@@ -18,10 +18,11 @@ module.exports = (app) => {
         const googleGeocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.REACT_APP_GOOGLE_API_KEY}&components=postal_code:${zipcode}`;
 
         let lat, lng;
-
+        let response = {}
         fetch(googleGeocodeUrl)
         .then(res => res.json())
         .then(data => {
+            response.geocode = data;
             lat = data.results[0].geometry.location.lat;
             lng = data.results[0].geometry.location.lng;
         })
@@ -29,7 +30,8 @@ module.exports = (app) => {
             fetch(`https://api.darksky.net/forecast/${process.env.DARK_SKY_API_KEY}/${lat},${lng}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                response.weather = data;
+                console.log(response.geocode)
                 res.send(data);
             })
             .catch(err => {
