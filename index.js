@@ -20,6 +20,8 @@ mongoose.connect(process.env.mongodburl, {useNewUrlParser: true}).then(
 
 function startWebServer() {
     const app = express();
+    app.use(express.static(path.join(__dirname, '/public/')))
+
     // app.use(express.static('./public'));
     app.use(express.urlencoded({extended: true}));
     app.use(express.json());
@@ -27,7 +29,6 @@ function startWebServer() {
     app.use(userRoutes);
     app.use(sessionRoutes);
 
-    app.use(express.static(path.join(__dirname, 'public')))
     require('./routes')(app);
 
     app.get('/', (req, res) => {
