@@ -16,7 +16,7 @@ mongoose.connect(process.env.mongodburl, {useNewUrlParser: true}).then(
     err => {
         console.log('mongoose did not connect', err);
     }
-)
+).catch(err => res.error(err))
 
 function startWebServer() {
     const app = express();
