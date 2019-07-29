@@ -27,7 +27,7 @@ function startWebServer() {
     app.use(sessionRoutes);
 
     // app.use(express.static(path.join(__dirname, 'client/build')))
-    require('./routes/')(app);
+    require('./routes')(app);
 
     app.get('/', (req, res) => {
         res.send(`Listening on port ${port}.`);
