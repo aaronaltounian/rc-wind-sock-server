@@ -10,7 +10,7 @@ module.exports = (app) => {
         if(!zipcode || zipcode.length < 5 || zipcode.length > 5) {
             res.redirect('/error');
         } else {
-            res.redirect('/current-weather');
+            // res.redirect('/current-weather');
         }
     });
 
