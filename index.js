@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/UserRoutes');
 const sessionRoutes = require('./routes/SessionRoutes');
+const planeRoutes = require('./routes/PlaneRoutes');
 
 mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
@@ -28,6 +29,7 @@ function startWebServer() {
     app.use(bodyParser.json());
     app.use(userRoutes);
     app.use(sessionRoutes);
+    app.use(planeRoutes);
 
     require('./routes')(app);
 
