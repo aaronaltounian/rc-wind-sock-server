@@ -1,5 +1,6 @@
 const User = require('../models/UserModel');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const salt = 8;
 
 function create(request, response, next) {
@@ -28,4 +29,13 @@ function create(request, response, next) {
     }
 }
 
+function display(request, response, next) {
+    let token = request.headers.authorization;
+    token = token.slice(7, token.length)
+    let user = jwt.verify(token, 'secretkey');
+    console.log(user);
+    response.json(user);
+}
+
 exports.create = create;
+exports.display = display;
